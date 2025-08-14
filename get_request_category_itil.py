@@ -13,19 +13,19 @@ from pathlib import Path
 
 # === CONFIGURAÇÃO ===
 
-GLPI_API_URL = "http://glpi-manutencao.clickip.local:5071/apirest.php"
-APP_TOKEN = "eYoExwDP3ghgK7VlM0e5XYiggsU987A97OtsC1KO"   # substituir
-USER_TOKEN = "ztOUa4e2HJhB7BMinpqHLgQSe1sx9rKUYmAaHmip"  # substituir
+GLPI_API_URL = "http://instancia_glpi/apirest.php"
+APP_TOKEN = "token da sessão"   # substituir
+USER_TOKEN = "token do usuário"  # substituir
 
-# Preferência: BUSCAR PELA STRING COMPLETA DO CAMINHO DA CATEGORIA
-# Ex.: "SEGURANÇA ELETRÔNICA > CENTRAL DE ALARME > INSTALAÇÃO"
-CATEGORY_FULLNAME = "SEGURANÇA ELETRÔNICA > CENTRAL DE ALARME > INSTALAÇÃO"
+
+
+CATEGORY_FULLNAME = "CATEGORIA_EXEMPLO"
 
 # Fallback: se quiser usar o ID numérico da categoria, defina CATEGORY_ID (ou deixe None)
 CATEGORY_ID = None  # por exemplo: 29 (ou None se for usar CATEGORY_FULLNAME)
 
 # Arquivo de saída (compatível com Linux). Vai para ~/Downloads por padrão
-OUTFILE = os.path.expanduser("~/Downloads/tickets_fechados_instalacao_cameras.json")
+OUTFILE = os.path.expanduser("~/Downloads/tickets_fechados.json")
 
 # Paginação
 PAGE_SIZE = 100
@@ -37,10 +37,11 @@ FORCEDISPLAY = [2, 1, 7, 15, 12]
 
 session = requests.Session()
 session.headers.update({
-    # Content-Type não é estritamente necessário para GET, mas mantive
+   
     "Content-Type": "application/json",
     "App-Token": APP_TOKEN,
     "Authorization": f"user_token {USER_TOKEN}"
+    
 })
 
 def init_session():
